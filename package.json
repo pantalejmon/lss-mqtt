@@ -1,5 +1,5 @@
 {
-  "name": "s-mqtt",
+  "name": "lss-mqtt",
   "version": "1.0.0",
   "description": "S-MQTT NodeJS implementation\"",
   "main": "index.js",
@@ -30,7 +30,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pantalejmon/s-mqtt"
+    "url": "https://github.com/pantalejmon/lss-mqtt"
   },
   "dependencies": {
     "@types/mqtt": "^2.5.0",
