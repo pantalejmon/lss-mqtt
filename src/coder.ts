@@ -2,7 +2,6 @@ import {CipherCCM, DecipherCCM, HexBase64BinaryEncoding, Utf8AsciiBinaryEncoding
 import crypto from 'crypto'
 
 export class Coder {
-
     private readonly algorithm = 'chacha20-poly1305';
     private iv = Buffer.alloc(12, 0);
     private cipher: CipherCCM;

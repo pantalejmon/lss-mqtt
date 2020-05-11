@@ -5,7 +5,10 @@ import {MqttClient} from "mqtt/types/lib/client";
 export class MqttApi {
     private client: MqttClient
 
-    constructor(private coder: Coder, private address: string, private port: number, subscribeCallback: (topic, payload) => any) {
+    constructor(private coder: Coder,
+                private address: string,
+                private port: number,
+                subscribeCallback: (topic, payload) => any) {
         this.client = mqtt.connect(`mqtt://${address}:${port}`)
         this.client.on('message', (topic, message) => {
             const decoded = this.coder.decode(message.toString());
@@ -18,6 +21,6 @@ export class MqttApi {
     }
 
     publish(topic: string, message: string) {
-        this.client.publish(topic,this.coder.encode(message));
+        this.client.publish(topic, this.coder.encode(message));
     }
 }

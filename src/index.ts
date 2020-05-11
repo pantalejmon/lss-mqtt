@@ -1,14 +1,29 @@
-import * as fs from "fs";
 import {Config} from "./util";
 import {Coder} from "./coder";
 import {MqttApi} from "./mqtt-api";
 
-let config: Config = JSON.parse(fs.readFileSync('config.json').toString('utf8'));
+export class LssMqtt {
+    private _callback: (topic, payload) => any;
+    private readonly coder: Coder;
+    private _api: MqttApi;
+    constructor(config: Config) {
+        this.coder= new Coder(config.key);
+        this._api = new MqttApi(this.coder, config.ip, config.port, this._callback)
+    }
 
-const coder: Coder = new Coder(config.key);
-const mqttApi: MqttApi = new MqttApi(coder, config.ip, config.port, (topic, payload) => {
-    console.log(payload);
-})
+    get callback(): (topic, payload) => any {
+        return this._callback;
+    }
 
-mqttApi.subscribe('test');
-mqttApi.publish('test', "Wiadomosc testowa");
+    set callback(value: (topic, payload) => any) {
+        this._callback = value;
+    }
+
+    get api(): MqttApi {
+        return this._api;
+    }
+
+    set api(value: MqttApi) {
+        this._api = value;
+    }
+}
