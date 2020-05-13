@@ -1,14 +1,15 @@
-import {Config} from "./util";
-import {Coder} from "./coder";
-import {MqttApi} from "./mqtt-api";
+import {Config} from "./lib/util";
+import {Coder} from "./lib/coder";
+import {MqttApi} from "./lib/mqtt-api";
 
 export class LssMqtt {
-    private _callback: (topic, payload) => any;
+    private _callback: (topic, payload) => any = ((topic, payload) => void 0);
     private readonly coder: Coder;
     private _api: MqttApi;
+
     constructor(config: Config) {
-        this.coder= new Coder(config.key);
-        this._api = new MqttApi(this.coder, config.ip, config.port, this._callback)
+        this.coder = new Coder(config.key);
+        this._api = new MqttApi(this.coder, config.ip, config.port, (topic, payload) => this._callback(topic, payload))
     }
 
     get callback(): (topic, payload) => any {

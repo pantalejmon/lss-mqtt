@@ -10,6 +10,7 @@ export class MqttApi {
                 private port: number,
                 subscribeCallback: (topic, payload) => any) {
         this.client = mqtt.connect(`mqtt://${address}:${port}`)
+        this.client.on('connect', () => console.log('LSS MQTT connected'));
         this.client.on('message', (topic, message) => {
             const decoded = this.coder.decode(message.toString());
             subscribeCallback(topic, decoded);
