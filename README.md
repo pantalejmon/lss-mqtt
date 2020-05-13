@@ -18,4 +18,5 @@ lssMqttClient.api.subscribe('test')
 
 lssMqttClient.callback = (topic, message) => {
     if (topic === 'test') console.log(message);
+}
 ```
