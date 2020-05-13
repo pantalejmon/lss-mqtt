@@ -14,15 +14,15 @@ import {LssMqtt} from 'lss-mqtt';
 
 const lssMqttClient = new LssMqtt({ip: "<Your broker ip>", port: <your broker port>, key: "<your private key>"})
 
-const topic = 'topic'
+const exampleTopic = 'topic'
 let counter = 0
 setInterval(() => {
-    lssMqttClient.api.publish('test', `Counter: ${counter++}`);
+    lssMqttClient.api.publish(exampleTopic, `Counter: ${counter++}`);
 }, 500);
 
-lssMqttClient.api.subscribe('test')
+lssMqttClient.api.subscribe(exampleTopic)
 
 lssMqttClient.callback = (topic, message) => {
-    if (topic === 'test') console.log(message);
+    if (topic === exampleTopic) console.log(message);
 }
 ```
