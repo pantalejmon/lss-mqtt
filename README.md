@@ -12,17 +12,20 @@ Usage example (Typescript/ES6+)
 
 import {LssMqtt} from 'lss-mqtt';
 
+// Configuration
 const lssMqttClient = new LssMqtt({ip: "<Your broker ip>", port: <your broker port>, key: "<your private key>"})
 
-const topic = 'topic'
+// Publishing
+const myTopic = 'myTopic'
 let counter = 0
 setInterval(() => {
-    lssMqttClient.api.publish('test', `Counter: ${counter++}`);
+    lssMqttClient.api.publish(myTopic, `Counter: ${counter++}`);
 }, 500);
 
-lssMqttClient.api.subscribe('test')
 
+// Subscribing
+lssMqttClient.api.subscribe(myTopic)
 lssMqttClient.callback = (topic, message) => {
-    if (topic === 'test') console.log(message);
+    if (topic === myTopic) console.log(message);
 }
 ```

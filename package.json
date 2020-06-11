@@ -1,7 +1,7 @@
 {
   "name": "lss-mqtt",
-  "version": "0.0.5",
-  "description": "S-MQTT NodeJS implementation\"",
+  "version": "0.1.0",
+  "description": "LSS-MQTT framework in NodeJS implementation\"",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -26,7 +26,17 @@
     "mocha": "^7.1.1",
     "nodemon": "^2.0.3"
   },
-  "keywords": [],
+  "keywords": [
+    "MQTT",
+    "mqtt",
+    "security",
+    "light security",
+    "iot",
+    "chacha20poly1305",
+    "crypto",
+    "secure communication",
+    "secure iot"
+  ],
   "author": "",
   "license": "MIT",
   "repository": {

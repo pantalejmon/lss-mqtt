@@ -14,17 +14,19 @@ export class Coder {
     private decipher: DecipherCCM;
 
     constructor(private password: string,
-                private textCoding: Utf8AsciiBinaryEncoding = 'utf8',
+                private textCoding: Utf8AsciiBinaryEncoding = 'ascii',
                 private cipherCoding: HexBase64BinaryEncoding = 'hex') {
         this.cipher = createCipheriv(this.algorithm, this.password, this.iv, {authTagLength: 16});
         this.decipher = createDecipheriv(this.algorithm, this.password, this.iv, {authTagLength: 16});
     }
 
     public encode(data: string) {
+        this.cipher = createCipheriv(this.algorithm, this.password, this.iv, {authTagLength: 16});
         return this.cipher.update(data, this.textCoding, this.cipherCoding);
     }
 
     public decode(cipher: string) {
+        this.decipher = createDecipheriv(this.algorithm, this.password, this.iv, {authTagLength: 16});
         return this.decipher.update(cipher, this.cipherCoding, this.textCoding)
     }
 }
